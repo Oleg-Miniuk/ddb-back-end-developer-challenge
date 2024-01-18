@@ -1,4 +1,66 @@
-# DDB Back End Developer Challenge
+## DDB Developer Notes
+
+### Proof of Concept Implementation
+This project is a proof of concept implementation. 
+It's part of a technical challenge in the hiring process and demonstrates basic functionalities and a proposed architecture. There're things that should be improved.
+
+
+### Improvements To Be Made
+This implementation is a starting point and serves as a demonstration of the core functionalities. However, there are several areas where this project can be improved for a more robust, production-ready application:
+
+#### 1. Containerization:
+
+Implementing Docker containers for the MongoDB and Backend application would enhance the portability and scalability of the application.
+Kubernetes (K8s) orchestration could be used for managing these containers, especially when scaling up the application or ensuring high availability.
+
+#### 2. Project Structure and Domain Separation:
+
+Currently, all functionalities are encapsulated within the chapter module. A more logical separation into distinct modules or domains is recommended for better maintainability and scalability.
+This separation would also facilitate clearer domain-driven design practices.
+
+#### 3. Error Handling and Boundary Checks:
+
+Robust error handling strategies and proper boundary checks are essential for the reliability and stability of the application.
+Implementing comprehensive error handling would improve the user experience and help in debugging and maintaining the application.
+#### 4. Logging and Monitoring:
+
+Implementing a logging mechanism would allow tracking of the application's behavior and performance.
+Additionally, integrating monitoring tools would provide insights into the application's health and facilitate proactive maintenance.
+
+#### 5. API Documentation with OpenAPI and Swagger:
+
+Creating an OpenAPI specification for the API would make the API more accessible and easier to understand.
+Integrating Swagger would provide interactive documentation, making it easier for developers to test and work with the API.
+
+#### 6. Testing - Unit and End-to-End (E2E):
+
+The current implementation lacks comprehensive testing. Adding unit tests and E2E tests is crucial for ensuring the quality and reliability of the application.
+Tests will also facilitate safer refactoring and feature expansion in the future.
+
+#### 7. Git Workflow Strategy
+
+#### 8. CI/CD
+
+
+### Getting Started
+These instructions will get your copy of the project up and running on your local machine for development and testing purposes
+1. **Install dependencies**
+
+2. **MongoDB Setup (locally)**
+Ensure that MongoDB is running locally and is accessible via the connection URI mongodb://localhost:27017/DDB. 
+
+3. **Database Initialization**
+Run the database initialization script to set up initial data structures (`briv.json`)
+
+4. **Testing with a Client Application**
+To test the API, you can use a client application like Postman.
+All request data structures are available in src/character/dtos/hp.dto.ts.
+Use these structures as a reference to construct your requests in the client application.
+
+## Thank you for taking the time to explore this project :) Your feedback and contributions are always welcome.
+
+---
+## DDB Back End Developer Challenge (initial description)
 
 ### Overview
 This task focuses on creating an API for managing a player character's Hit Points (HP) within our game. The API will enable clients to perform various operations related to HP, including dealing damage of different types, considering character resistances and immunities, healing, and adding temporary Hit Points. The task requires building a service that interacts with HP data provided in the `briv.json` file and persists throughout the application's lifetime.
