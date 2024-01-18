@@ -11,7 +11,7 @@ import { ICharacter } from './entities/character.entity';
 @Injectable()
 export class CharacterService {
   constructor(
-    @InjectModel('ICharacter')
+    @InjectModel('Character')
     private readonly characterModel: Model<ICharacter>,
   ) {}
 

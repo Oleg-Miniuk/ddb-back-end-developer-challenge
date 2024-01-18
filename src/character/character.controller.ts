@@ -6,7 +6,7 @@ import { CharacterService } from './character.service';
 //   AddTemporaryHpDto,
 // } from './DTOs/character.dto';
 
-@Controller('hp')
+@Controller('character')
 export class CharacterController {
   constructor(private readonly characterService: CharacterService) {}
 
