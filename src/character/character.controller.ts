@@ -2,7 +2,7 @@ import { Controller, Get, Post, Param, Body } from '@nestjs/common';
 import { CharacterService } from './character.service';
 import {
   DealDamageDto,
-  // HealDto,
+  HealDto,
   // AddTemporaryHpDto,
 } from './DTOs/character.dto';
 
@@ -20,10 +20,10 @@ export class CharacterController {
     return this.characterService.dealDamage(dealDamageDto);
   }
 
-  // @Post(':id/heal')
-  // async heal(@Param('id') id: string, @Body() healDto: HealDto) {
-  //   return this.characterService.heal(id, healDto);
-  // }
+  @Post('heal')
+  async heal(@Body() healDto: HealDto) {
+    return this.characterService.heal(healDto);
+  }
 
   // @Post(':id/add-temporary-hp')
   // async addTemporaryHP(

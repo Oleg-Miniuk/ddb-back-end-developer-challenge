@@ -18,5 +18,6 @@ export class DealDamageDto {
 }
 
 export class HealDto {
+  readonly characterId: string;
   readonly healAmount: number;
 }

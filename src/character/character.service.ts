@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { ICharacter } from './entities/character.entity';
 import {
   DealDamageDto,
-  // HealDto,
+  HealDto,
   // AddTemporaryHpDto,
 } from './DTOs/character.dto';
 
@@ -57,10 +57,11 @@ export class CharacterService {
     // Apply damage to temporary HP first
     if (character.temporaryHitPoints > 0) {
       if (character.temporaryHitPoints >= deltaDamageAmount) {
-        character.temporaryHitPoints -= deltaDamageAmount;
+        character.temporaryHitPoints =
+          character.temporaryHitPoints - deltaDamageAmount;
         deltaDamageAmount = 0;
       } else {
-        deltaDamageAmount -= character.temporaryHitPoints;
+        deltaDamageAmount = deltaDamageAmount - character.temporaryHitPoints;
         character.temporaryHitPoints = 0;
       }
     }
@@ -72,20 +73,19 @@ export class CharacterService {
     return character;
   }
 
-  // async heal(id: string, healAmount: number): Promise<CharacterDocument> {
-  //   const character = await this.characterModel.findById(id);
-  //   if (!character) {
-  //     throw new NotFoundException(`Character with ID ${id} not found`);
-  //   }
+  async heal(healDto: HealDto): Promise<ICharacter> {
+    const { characterId, healAmount } = healDto;
 
-  //   character.hitPoints = Math.min(
-  //     character.hitPoints + healAmount,
-  //     character.maxHitPoints,
-  //   );
-  //   await character.save();
+    const character = await this.characterModel.findById(characterId);
+    if (!character) {
+      throw new NotFoundException(`Character with ID ${characterId} not found`);
+    }
 
-  //   return character;
-  // }
+    character.hitPoints = character.hitPoints + healAmount;
+    await character.save();
+
+    return character;
+  }
 
   // async addTemporaryHP(id: string, tempHpAmount: number): Promise<CharacterDocument> {
   //   const character = await this.characterModel.findById(id);
