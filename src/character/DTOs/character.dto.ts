@@ -1,4 +1,5 @@
 export class AddTemporaryHpDto {
+  readonly characterId: string;
   readonly temporaryHpAmount: number;
 }
 

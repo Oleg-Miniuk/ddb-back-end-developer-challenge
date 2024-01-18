@@ -5,7 +5,7 @@ import { ICharacter } from './entities/character.entity';
 import {
   DealDamageDto,
   HealDto,
-  // AddTemporaryHpDto,
+  AddTemporaryHpDto,
 } from './DTOs/character.dto';
 
 @Injectable()
@@ -87,15 +87,25 @@ export class CharacterService {
     return character;
   }
 
-  // async addTemporaryHP(id: string, tempHpAmount: number): Promise<CharacterDocument> {
-  //   const character = await this.characterModel.findById(id);
-  //   if (!character) {
-  //     throw new NotFoundException(`Character with ID ${id} not found`);
-  //   }
+  async addTemporaryHP(
+    addTemporaryHpDto: AddTemporaryHpDto,
+  ): Promise<ICharacter> {
+    const { characterId, temporaryHpAmount } = addTemporaryHpDto;
+    const character = await this.characterModel.findById(characterId);
 
-  //   character.temporaryHitPoints = Math.max(character.temporaryHitPoints, tempHpAmount);
-  //   await character.save();
+    if (!character) {
+      throw new NotFoundException(`Character with ID ${characterId} not found`);
+    }
 
-  //   return character;
-  // }
+    // TODO: clarify about the multiple items
+    // "are not additive and always taking the higher value"
+
+    if (!character.temporaryHitPoints) {
+      character.temporaryHitPoints = temporaryHpAmount;
+    }
+
+    await character.save();
+
+    return character;
+  }
 }

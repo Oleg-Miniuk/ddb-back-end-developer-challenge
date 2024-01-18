@@ -3,7 +3,7 @@ import { CharacterService } from './character.service';
 import {
   DealDamageDto,
   HealDto,
-  // AddTemporaryHpDto,
+  AddTemporaryHpDto,
 } from './DTOs/character.dto';
 
 @Controller('character')
@@ -25,11 +25,8 @@ export class CharacterController {
     return this.characterService.heal(healDto);
   }
 
-  // @Post(':id/add-temporary-hp')
-  // async addTemporaryHP(
-  //   @Param('id') id: string,
-  //   @Body() addTemporaryHpDto: AddTemporaryHpDto,
-  // ) {
-  //   return this.characterService.addTemporaryHP(id, addTemporaryHpDto);
-  // }
+  @Post('add-temporary-hp')
+  async addTemporaryHP(@Body() addTemporaryHpDto: AddTemporaryHpDto) {
+    return this.characterService.addTemporaryHP(addTemporaryHpDto);
+  }
 }
