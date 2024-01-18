@@ -1,10 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body } from '@nestjs/common';
 import { CharacterService } from './character.service';
-// import {
-//   DealDamageDto,
-//   HealDto,
-//   AddTemporaryHpDto,
-// } from './DTOs/character.dto';
+import {
+  DealDamageDto,
+  // HealDto,
+  // AddTemporaryHpDto,
+} from './DTOs/character.dto';
 
 @Controller('character')
 export class CharacterController {
@@ -15,13 +15,10 @@ export class CharacterController {
     return this.characterService.findOne(id);
   }
 
-  // @Post(':id/deal-damage')
-  // async dealDamage(
-  //   @Param('id') id: string,
-  //   @Body() dealDamageDto: DealDamageDto,
-  // ) {
-  //   return this.characterService.dealDamage(id, dealDamageDto);
-  // }
+  @Post('deal-damage')
+  async dealDamage(@Body() dealDamageDto: DealDamageDto) {
+    return this.characterService.dealDamage(dealDamageDto);
+  }
 
   // @Post(':id/heal')
   // async heal(@Param('id') id: string, @Body() healDto: HealDto) {

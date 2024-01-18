@@ -36,6 +36,7 @@ export const CharacterSchema = new mongoose.Schema({
   name: String,
   level: Number,
   hitPoints: Number,
+  temporaryHitPoints: Number,
   classes: [classSchema],
   stats: statsSchema,
   items: [itemSchema],
@@ -80,6 +81,7 @@ export interface ICharacter extends mongoose.Document {
   name: string;
   level: number;
   hitPoints: number;
+  temporaryHitPoints: number;
   classes: Class[];
   stats: Stats;
   items: Item[];
