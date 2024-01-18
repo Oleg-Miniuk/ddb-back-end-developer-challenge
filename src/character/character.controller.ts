@@ -1,10 +1,6 @@
 import { Controller, Get, Post, Param, Body } from '@nestjs/common';
 import { CharacterService } from './character.service';
-import {
-  DealDamageDto,
-  HealDto,
-  AddTemporaryHpDto,
-} from './DTOs/character.dto';
+import { DealDamageDto, HealDto, AddTemporaryHpDto } from './DTOs/hp.dto';
 
 @Controller('character')
 export class CharacterController {
